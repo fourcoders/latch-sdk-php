@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Fourcoders\\LatchSdk": "src/"
+            "Fourcoders\\LatchSdk\\": "src/"
         }
     }
 }
