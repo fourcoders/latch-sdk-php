@@ -3,6 +3,7 @@ namespace Fourcoders\LatchSdk;
 /*License ...*/
 
 use GuzzleHttp;
+use LatchResponse;
 
 class Latch {
 
@@ -50,7 +51,7 @@ class Latch {
             $response = $client->delete($url, $opts);
         }
 
-        return $response->json();
+        return new LatchResponse($response->getBody());
     }
 
     private function requestProxy($method, $url, $query=null){
