@@ -46,7 +46,7 @@ class Latch {
             $opts = array('headers' => $headers, 'body' => $query);
             $response = $client->put($url, $body);
         } else if('DELETE' == $method) {
-            $opts = array('headers' => $headers, 'query' => $query)
+            $opts = array('headers' => $headers, 'query' => $query);
             $response = $client->delete($url, $opts);
         }
 
