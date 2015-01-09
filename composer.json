@@ -1,0 +1,16 @@
+{
+    "name": "fourcoders/latch-sdk-php",
+    "description": "PHP SDK for latch API with composer and guzzle ",
+    "keywords": ["fourcoders", "latch"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fourcoders",
+            "email": "fourcoders@fourcoders.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "guzzle/guzzle": "v3.8.1"
+    }
+}
