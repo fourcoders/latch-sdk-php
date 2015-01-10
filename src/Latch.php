@@ -31,7 +31,7 @@ class Latch {
     }
 
     private function generate_url($url_resource) {
-        return $API_HOST . '/' . $API_VERSION . '/' . $url_resource;
+        return self::$API_HOST . '/' . self::$API_VERSION . $url_resource;
     }
 
     private function request($method, $url, $headers, $query=array()) {
@@ -55,7 +55,13 @@ class Latch {
     }
 
     private function requestProxy($method, $url, $query=null){
-        $headers = $this->authHeaders($method, $url, $query);
+        $arrayUrl=explode('/',$url);
+        for ($i=0; $i <= 2 ; $i++) {
+        unset($arrayUrl[$i]);
+        }
+        $query_string=implode("/",$arrayUrl);
+        $query_string = '/'.$query_string;
+        $headers = $this->authHeaders($method, $query_string, $query);
         return $this->request($method, $url, $headers, $query);
     }
 
@@ -172,7 +178,7 @@ class Latch {
 
 
         $headers = array(
-            self::$AUTHORIZATION_HEADER_NAME => $auth_header,
+            self::$AUTH_HEADER_NAME => $auth_header,
             self::$DATE_HEADER_NAME => $utc
         );
 
@@ -199,7 +205,7 @@ class Latch {
     }
 
     private function getCurrentUTC() {
-        $time = new DateTime('now', new DateTimeZone('UTC'));
+        $time = new \DateTime('now', new \DateTimeZone('UTC'));
         return $time->format("Y-m-d H:i:s");
     }
 
