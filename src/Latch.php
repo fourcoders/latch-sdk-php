@@ -31,14 +31,14 @@ class Latch {
     }
 
     private function generate_url($url_resource) {
-        return $API_HOST . '/' . $API_VERSION . '/' . $url_resource
+        return $API_HOST . '/' . $API_VERSION . '/' . $url_resource;
     }
 
     private function request($method, $url, $headers, $query=array()) {
         $client = new GuzzleHttp\Client();
 
         if('GET' == $method) {
-            $opts = array('headers' => $headers)
+            $opts = array('headers' => $headers);
             $response = $client->get($url, $opts);
         } else if('POST' == $method) {
             $opts = array('headers' => $headers, 'body' => $query);
@@ -107,7 +107,7 @@ class Latch {
     private function history($accountId, $from=0, $to=null) {
         $url = $this->generate_url(self::$API_HISTORY_URL);
 
-        if (!$to){
+        if(!$to) {
             $date = time();
             $to = $date * 1000;
         }
@@ -115,7 +115,7 @@ class Latch {
         return $this->requestProxy('GET', $url . "/" . $accountId . "/" . $from . "/" . $to);
     }
 
-    private function getOperation($operationId=null){
+    private function getOperation($operationId=null) {
         $url = $this->generate_url(self::$API_OPERATION_URL);
 
         if (!$operationId){
@@ -125,7 +125,7 @@ class Latch {
         }
     }
 
-    private function createOperation($parentId, $name, $twoFactor, $lockOnRequest){
+    private function createOperation($parentId, $name, $twoFactor, $lockOnRequest) {
         $url = $this->generate_url(self::$API_OPERATION_URL);
         $query = array(
             'parentId' => urlencode($parentId),
@@ -137,7 +137,7 @@ class Latch {
         return $this->request_proxy('POST', $url, $query);
     }
 
-    private function updateOperation($operationId, $name, $twoFactor, $lockOnRequest){
+    private function updateOperation($operationId, $name, $twoFactor, $lockOnRequest) {
         $url = $this->generate_url(self::$API_OPERATION_URL);
         $query = array(
             'name' => urlencode($name),
@@ -154,12 +154,12 @@ class Latch {
     }
 
     private function authHeaders($method, $query_string, $query=null) {
-        $utc = $this->getCurrentUTC()
+        $utc = $this->getCurrentUTC();
         $string_to_sign = trim(strtoupper($method)) . "\n" . $utc . "\n\n" . trim($query_string);
 
-        if ($query && sizeof($query) > 0){
+        if($query && sizeof($query) > 0) {
             $serialized_params = $this->getSerializedParams($params);
-            if ($serializedParams && sizeof($serializedParams) > 0){
+            if($serializedParams && sizeof($serializedParams) > 0) {
                 $string_to_sign = trim($string_to_sign . "\n" . $serialized_params);
             }
         }
