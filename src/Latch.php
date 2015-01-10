@@ -59,12 +59,12 @@ class Latch {
         return $this->request($method, $url, $headers, $query);
     }
 
-    private function status($accountId) {
+    public function status($accountId) {
         $url = $this->generate_url(self::$API_CHECK_STATUS_URL);
         return $this->requestProxy('GET', $url . "/" . $accountId);
     }
 
-    private function operationStatus($accountId, $operationId) {
+    public function operationStatus($accountId, $operationId) {
         $url = $this->generate_url(self::$API_CHECK_STATUS_URL);
         return $this->requestProxy('GET', $url . "/" . $accountId . "/op/" . $operationId);
     }
@@ -74,7 +74,7 @@ class Latch {
         return $this->requestProxy('GET', $url . "/" . $token);
     }
 
-    private function pairWithId($accountId) {
+    public function pairWithId($accountId) {
         $url = $this->generate_url(self::$API_PAIR_WITH_ID_URL);
         return $this->requestProxy('GET', $url . "/" . $accountId);
     }
@@ -84,7 +84,7 @@ class Latch {
         return $this->requestProxy('GET', $url . "/" . $accountId);
     }
 
-    private function lock($accountId, $operationId=null) {
+    public function lock($accountId, $operationId=null) {
         $url = $this->generate_url(self::$API_LOCK_URL);
 
         if(!$operationId){
@@ -94,7 +94,7 @@ class Latch {
         }
     }
 
-    private function unlock($accountId, $operationId=null) {
+    public function unlock($accountId, $operationId=null) {
         $url = $this->generate_url(self::$API_UNLOCK_URL);
 
         if(!$operationId){
@@ -104,7 +104,7 @@ class Latch {
         }
     }
 
-    private function history($accountId, $from=0, $to=null) {
+    public function history($accountId, $from=0, $to=null) {
         $url = $this->generate_url(self::$API_HISTORY_URL);
 
         if(!$to) {
@@ -115,7 +115,7 @@ class Latch {
         return $this->requestProxy('GET', $url . "/" . $accountId . "/" . $from . "/" . $to);
     }
 
-    private function getOperation($operationId=null) {
+    public function getOperation($operationId=null) {
         $url = $this->generate_url(self::$API_OPERATION_URL);
 
         if (!$operationId){
@@ -125,7 +125,7 @@ class Latch {
         }
     }
 
-    private function createOperation($parentId, $name, $twoFactor, $lockOnRequest) {
+    public function createOperation($parentId, $name, $twoFactor, $lockOnRequest) {
         $url = $this->generate_url(self::$API_OPERATION_URL);
         $query = array(
             'parentId' => urlencode($parentId),
@@ -137,7 +137,7 @@ class Latch {
         return $this->request_proxy('POST', $url, $query);
     }
 
-    private function updateOperation($operationId, $name, $twoFactor, $lockOnRequest) {
+    public function updateOperation($operationId, $name, $twoFactor, $lockOnRequest) {
         $url = $this->generate_url(self::$API_OPERATION_URL);
         $query = array(
             'name' => urlencode($name),
@@ -148,7 +148,7 @@ class Latch {
         return $this->requestProxy('POST', $url . "/" . $operationId, $query);
     }
 
-    private function removeOperation($operationId) {
+    public function removeOperation($operationId) {
         $url = $this->generate_url(self::$API_OPERATION_URL);
         return $this->requestProxy('DELETE', $url . "/" . $operationId);
     }
