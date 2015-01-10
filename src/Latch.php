@@ -69,7 +69,7 @@ class Latch {
         return $this->requestProxy('GET', $url . "/" . $accountId . "/op/" . $operationId);
     }
 
-    private function pair($token) {
+    public function pair($token) {
         $url = $this->generate_url(self::$API_PAIR_URL);
         return $this->requestProxy('GET', $url . "/" . $token);
     }
@@ -79,7 +79,7 @@ class Latch {
         return $this->requestProxy('GET', $url . "/" . $accountId);
     }
 
-    private function unpair($accountId) {
+    public function unpair($accountId) {
         $url = $this->generate_url(self::$API_UNPAIR_URL);
         return $this->requestProxy('GET', $url . "/" . $accountId);
     }
