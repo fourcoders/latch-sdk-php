@@ -55,7 +55,7 @@ class Latch {
     }
 
     private function requestProxy($method, $url, $query=null){
-        $headers = $this->authHeaders($method, $query_string, $query);
+        $headers = $this->authHeaders($method, $url, $query);
         return $this->request($method, $url, $headers, $query);
     }
 
