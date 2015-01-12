@@ -53,7 +53,7 @@ class Error {
      * @return JsonObject a Json object with the code and message of the error
      */
     public function toJson() {
-        $error = new JsonObject();
+        $error = new \JsonObject();
         $error.addProperty("code", $this->code);
         $error.addProperty("message", $this->message);
         return $error;
