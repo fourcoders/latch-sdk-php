@@ -54,7 +54,7 @@ class Latch {
     private function requestProxy($method, $query_string, $query=null) {
         $headers = $this->authHeaders($method, $query_string, $query);
         $url_api = self::$API_HOST_DOMAIN . $query_string;
-        return $this->request($method, $url_api . $query_string, $headers, $query);
+        return $this->request($method, $url_api, $headers, $query);
     }
 
     private function generateUrl($url, $params='') {
@@ -62,7 +62,7 @@ class Latch {
     }
 
     public function status($accountId) {
-        $url = generateUrl(self::$API_CHECK_STATUS_URL, "/" . $accountId);
+        $url = $this->generateUrl(self::$API_CHECK_STATUS_URL, "/" . $accountId);
         return $this->requestProxy('GET', $url);
     }
 
