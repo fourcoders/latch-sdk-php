@@ -22,7 +22,7 @@ namespace Fourcoders\LatchSdk;
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-use Error;
+use Fourcoders\LatchSdk\Error;
 
 /**
  * This class models a response from any of the endpoints in the Latch API.
