@@ -3,7 +3,7 @@ namespace Fourcoders\LatchSdk;
 /*License ...*/
 
 use GuzzleHttp;
-use LatchResponse;
+use Fourcoders\LatchSdk\LatchResponse;
 
 class Latch {
 
@@ -67,39 +67,39 @@ class Latch {
     }
 
     public function operationStatus($accountId, $operationId) {
-        $url = generateUrl(self::$API_CHECK_STATUS_URL, "/" . $accountId . "/op/" . $operationId);
+        $url = $this->generateUrl(self::$API_CHECK_STATUS_URL, "/" . $accountId . "/op/" . $operationId);
         return $this->requestProxy('GET', $url);
     }
 
     public function pair($token) {
-        $url = generateUrl(self::$API_PAIR_URL, "/" . $token);
+        $url = $this->generateUrl(self::$API_PAIR_URL, "/" . $token);
         return $this->requestProxy('GET', $url);
     }
 
     public function pairWithId($accountId) {
-        $url = generateUrl(self::$API_PAIR_WITH_ID_URL, "/" . $accountId);
+        $url = $this->generateUrl(self::$API_PAIR_WITH_ID_URL, "/" . $accountId);
         return $this->requestProxy('GET', $url);
     }
 
     public function unpair($accountId) {
-        $url = generateUrl(self::$API_UNPAIR_URL, "/" . $accountId);
+        $url = $this->generateUrl(self::$API_UNPAIR_URL, "/" . $accountId);
         return $this->requestProxy('GET', $url);
     }
 
     public function lock($accountId, $operationId=null) {
         if(!$operationId){
-            $url = generateUrl(self::$API_LOCK_URL, "/" . $accountId);
+            $url = $this->generateUrl(self::$API_LOCK_URL, "/" . $accountId);
         } else {
-            $url = generateUrl(self::$API_LOCK_URL, "/" . $accountId . "/op/" . $operationId);
+            $url = $this->generateUrl(self::$API_LOCK_URL, "/" . $accountId . "/op/" . $operationId);
         }
         return $this->requestProxy('POST', $url);
     }
 
     public function unlock($accountId, $operationId=null) {
         if(!$operationId){
-            $url = generateUrl(self::$API_UNLOCK_URL, "/" . $accountId);
+            $url = $this->generateUrl(self::$API_UNLOCK_URL, "/" . $accountId);
         } else {
-            $url = generateUrl(self::$API_UNLOCK_URL, "/" . $accountId . "/op/" . $operationId);
+            $url = $this->generateUrl(self::$API_UNLOCK_URL, "/" . $accountId . "/op/" . $operationId);
         }
         return $this->requestProxy('POST', $url);
     }
@@ -109,15 +109,15 @@ class Latch {
             $date = time();
             $to = $date * 1000;
         }
-        $url = generateUrl(self::$API_HISTORY_URL, "/" . $accountId . "/" . $from . "/" . $to);
+        $url = $this->generateUrl(self::$API_HISTORY_URL, "/" . $accountId . "/" . $from . "/" . $to);
         return $this->requestProxy('GET', $url);
     }
 
-    public function getOperation($operationId=null) {
+    public function getOperations($operationId=null) {
         if (!$operationId){
-            $url = generateUrl(self::$API_OPERATION_URL);
+            $url = $this->generateUrl(self::$API_OPERATION_URL);
         } else {
-            $url = generateUrl(self::$API_OPERATION_URL, "/" . $operationId);
+            $url = $this->generateUrl(self::$API_OPERATION_URL, "/" . $operationId);
         }
         return $this->requestProxy('GET', $url);
     }
@@ -129,7 +129,7 @@ class Latch {
             'two_factor' => urlencode($twoFactor),
             'lock_on_request' => urlencode($lockOnRequest)
         );
-        $url = generateUrl(self::$API_OPERATION_URL);
+        $url = $this->generateUrl(self::$API_OPERATION_URL);
         return $this->request_proxy('POST', $url, $query);
     }
 
@@ -139,12 +139,12 @@ class Latch {
             'two_factor' => urlencode($twoFactor),
             'lock_on_request' => urlencode($lockOnRequest)
         );
-        $url = generateUrl(self::$API_OPERATION_URL, "/" . $operationId);
+        $url = $this->generateUrl(self::$API_OPERATION_URL, "/" . $operationId);
         return $this->requestProxy('POST', $url, $query);
     }
 
     public function removeOperation($operationId) {
-        $url = generateUrl(self::$API_OPERATION_URL, "/" . $operationId);
+        $url = $this->generateUrl(self::$API_OPERATION_URL, "/" . $operationId);
         return $this->requestProxy('DELETE', $url);
     }
 
