@@ -24,4 +24,26 @@ Composer generates a vendor/autoload.php file. You can simply include this file 
 require 'vendor/autoload.php';
 ```
 
-## Usage 
+## Usage (Extract and modify of original php sdk https://github.com/ElevenPaths/latch-sdk-php#using-the-sdk-in-php)
+
+* Create a Latch object with the "Application ID" and "Secret" previously obtained.
+```
+	$api = new \Fourcoders\LatchSdk\Latch(APP_ID, APP_SECRET);
+```
+
+* Optional settings:
+```
+	$api->setProxy(YOUR_PROXY);
+```
+
+* Call to Latch Server. Pairing will return an account id that you should store for future api calls
+```
+     $pairResponse = $api->pair("PAIRING_CODE_HERE");
+     $statusResponse = $api->status(ACCOUNT_ID_HERE);
+     $unpairResponse = $api->unpair(ACCOUNT_ID_HERE);
+```
+
+* After every API call, get Latch response data and errors and handle them.
+```
+     $pairResponse->getData();
+     $pairResponse->getError();
