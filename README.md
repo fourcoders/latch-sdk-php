@@ -24,7 +24,8 @@ Composer generates a vendor/autoload.php file. You can simply include this file 
 require 'vendor/autoload.php';
 ```
 
-## Usage ###(Extract and modify of original php sdk https://github.com/ElevenPaths/latch-sdk-php#using-the-sdk-in-php)
+## Usage 
+### Extract and modify of original php sdk https://github.com/ElevenPaths/latch-sdk-php#using-the-sdk-in-php
 
 Create a Latch object with the "Application ID" and "Secret" previously obtained.
 
